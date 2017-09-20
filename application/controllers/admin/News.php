@@ -219,7 +219,7 @@ class News extends CI_Controller {
 		}
 
 		//DBからお知らせデータ取得
-		$data['item'] = $this->News_model->fid_by_id($id);
+		$data['item'] = $this->News_model->find_by_id($id);
 
 		//削除ページ表示
 		$this->load->view('admin/news/news_header_v');
