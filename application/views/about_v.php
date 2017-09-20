@@ -41,16 +41,16 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
               <div class="item active">
-                <img src="images/about01.jpg" height="550" width="750" alt="...">
+                <img src="<?php echo base_url('images/about01.jpg')?>" height="550" width="750" alt="...">
               </div>
               <div class="item">
-                <img src="images/about02.jpg" height="550" width="750" alt="...">
+                <img src="<?php echo base_url('images/about02.jpg')?>" height="550" width="750" alt="...">
               </div>
               <div class="item">
-                <img src="images/about03.jpg" height="550" width="750" alt="...">
+                <img src="<?php echo base_url('images/about03.jpg')?>" height="550" width="750" alt="...">
               </div>
               <div class="item">
-                <img src="images/about04.jpg" height="550" width="750" alt="...">
+                <img src="<?php echo base_url('images/about04.jpg')?>" height="550" width="750" alt="...">
               </div>
             </div>
           </div>

@@ -222,6 +222,9 @@ th {
   padding: 0;
 }
 
+.error {
+	color: red;
+}
 /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
 @media print {
   *,
@@ -7750,5 +7753,7 @@ footer .text-center a {
 .detail-table th, .detail-table td {
   padding: 0 5px;
 }
-
+.help-block {
+ margin-bottom: 0;
+}
 /*# sourceMappingURL=styles.css.map */

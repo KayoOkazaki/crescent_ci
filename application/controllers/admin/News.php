@@ -33,8 +33,6 @@ class News extends CI_Controller {
 	public function index($page=1)
 	{
 		//peginationの設定
-		$this->load->library('form_validation');
-
 		//お知らせ一覧画面のベースとなるindexページのURLを指定する
 		$config['base_url'] = base_url('admin/news/index');
 

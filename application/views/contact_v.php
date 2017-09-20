@@ -1,61 +1,10 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="クレセントシューズは靴の素材と履き心地にこだわる方に満足をお届けする東京の靴屋です。後悔しない靴選びはぜひクレセントシューズにお任せください。">
-  <meta name="keyword" content="Crescent,shoes,クレセントシューズ,東京,新宿区,メンズシューズ,レディースシューズ,キッズシューズ,ベビーシューズ">
-
-  <title>Contact | Crescent Shoes</title>
-
-  <link rel="shortcut icon" href="images/favicon.ico">
-  <link rel="stylesheet" href="css/styles.css">
-  <!-- Font Awesome CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-      <!--[if lt IE 9]>
-    <script src="http://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv-printshiv.min.js"></script>
-    <script src="http://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <![endif]-->
-  </head>
-  <body class="pageTop" id="pageTop">
-    <header class="navbar navbar-default navbar-fixed-top" role="banner">
-      <div class="container">
-        <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <h1 class="navbar-header">
-          <a href="index.html" class="navbar-brand"><img src="images/logo01.png" alt="LOGO"></a>
-        </h1><!-- /.navbar-header -->
-        <nav class="navbar-collapse collapse" id="navigation" role="navigation">
-          <ul class="nav navbar-nav">
-            <li><a href="index.html">ホーム<span>HOME</span></a></li>
-            <li><a href="about.html">会社概要<span>ABOUT</span></a></li>
-            <li><a href="news.html">ニュース<span>NEWS</span></a></li>
-            <li><a href="shop.html">ショップ<span>ONLINE SHOP</span></a></li>
-            <li><a href="contact.html">お問い合わせ<span>CONTACT</span></a></li>
-          </ul>
-          <form class="navbar-form" role="search">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="keyword">
-              <span class="input-group-btn"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button></span>
-            </div><!-- /.input-group -->
-          </form>
-        </nav>
-      </div>
-    </header>
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
           <nav>
             <h1 class="page-header">Contact</h1>
             <ol class="breadcrumb">
-              <li><a href="index.html">Home</a></li>
+              <li><a href="<?php echo base_url('home'); ?>">Home</a></li>
               <li class="active">Contact</li>
             </ol>
           </nav>
@@ -80,77 +29,110 @@
         <div class="row">
           <div class="col-md-4 hidden-sm hidden-xs contactleft">
             <div class="contact-img">
-            <img src="images/contact.jpg">
+            <img src="<?php echo base_url('images/contact.jpg'); ?>">
             </div>
           </div>
           <div class="col-md-8">
             <h3 class="page-header">Send Message</h3>
-            <form class="form-horizontal">
+            <form action="" method="post" class="form-horizontal" novalidate>
+              <!------------------------
+                   お名前
+              -------------------------->
               <div class="form-group">
                 <label for="inputname" class="col-sm-3 control-label">お名前<span>(必須)</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="inputname" required>
+<!--              <input type="text" class="form-control" id="inputname" required> -->
+                  <?php echo form_input(array(
+                  		'name' => 'name',
+                  		'id' => 'name',
+                  		'class' => 'form-control',
+                  		'value' => set_value('name',$name)
+                  ));?>
                   <p class="help-block">(例)山田　太郎</p>
+                  <span class='error'><?php echo form_error('name');?></span>
                 </div>
               </div>
+               <!------------------------
+                    フリガナ
+               -------------------------->
               <div class="form-group">
                 <label for="inputkana" class="col-sm-3 control-label">フリガナ<span>(必須)</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="inputkana" required>
+<!--              <input type="text" class="form-control" id="inputkana" required> -->
+                  <?php echo form_input(array(
+                  		'name' => 'kana',
+                  		'id' => 'kana',
+                  		'class' => 'form-control',
+                  		'value' => set_value('kana',$kana)
+                  ));?>
                   <p class="help-block">(例)ヤマダ　タロウ ※全角カタカナ</p>
+                  <span class='error'><?php echo form_error('kana');?></span>
                 </div>
               </div>
+              <!------------------------
+                   メールアドレス
+              -------------------------->
               <div class="form-group">
                 <label for="inputemail" class="col-sm-3 control-label">メールアドレス<span>(必須)</span></label>
                 <div class="col-sm-9">
-                  <input type="email" class="form-control" id="inputemail" required>
+<!--            <input type="email" class="form-control" id="inputemail" required> -->
+                 <?php echo form_input(array(
+                 		'type' => 'email',
+                 		'name' => 'mail',
+                 		'id' => 'mail',
+                 		'class' => 'form-control',
+                 		'value' => set_value('mail',$mail)
+                 ));?>
                   <p class="help-block">(例)abc@zz.com ※半角英数字</p>
+                  <span class='error'><?php echo form_error('mail');?></span>
                 </div>
               </div>
+              <!------------------------
+                   電話番号
+              -------------------------->
               <div class="form-group">
                 <label for="inputtel" class="col-sm-3 control-label">電話番号</label>
                 <div class="col-sm-9">
-                  <input type="tel" class="form-control" id="inputtel">
+<!--             <input type="tel" class="form-control" id="inputtel"> -->
+                 <?php echo form_input(array(
+                 		'type' => 'tel',
+                 		'name' => 'tel',
+                 		'id' => 'tel',
+                 		'class' => 'form-control',
+                 		'value' => set_value('tel',$tel)
+                 ));?>
                   <p class="help-block">(例)03-1234-3214　※ハイフンあり　半角数字</p>
+                  <span class='error'><?php echo form_error('tel');?></span>
                 </div>
               </div>
+              <!------------------------
+                   お問い合わせ内容
+              -------------------------->
               <div class="form-group">
                 <label for="inputmessage" class="col-sm-3 control-label">お問い合わせ内容<span>(必須)</span></label>
                 <div class="col-sm-9">
-                  <textarea rows="10" cols="100" class="form-control" id="message" required maxlength="999" style="resize:none"></textarea>
+<!--             <textarea rows="10" cols="100" class="form-control" id="message" required maxlength="999" style="resize:none"></textarea> -->
+                 <?php
+                     $attr['name'] = 'message';
+                     $attr['id'] = 'message';
+                     $attr['class'] = 'form-control';
+                     $attr['rows'] = 10;
+                     $attr['cols'] = 100;
+                     $attr['maxlength'] = 999;
+                     $attr['value'] = set_value('message',$message);
+                     $attr['style'] = 'resize:none';
+                     echo form_textarea($attr);
+                  ;?>
+                  <span class='error'><?php echo form_error('message');?></span>
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-10">
-                  <button type="submit" class="btn btn-success btn-lg">内容を確認して送信</button>
+<!--                   <button type="submit" name='conf' class="btn btn-success btn-lg">内容を確認して送信</button> -->
+                  <?php echo form_submit('conf', '内容を確認して送信',array('class' => 'btn btn-success btn-lg')); ?>
                 </div>
               </div>
             </form>
           </div>
-
         </div>
       </div>
-      <div class="pagetop margin-top-md">
-        <a href="#pageTop" class="center-block text-center" onclick="$('html,body').animate({scrollTop: 0}); return false;"><i class="fa fa-chevron-up center-block "></i>Page Top</a>
-      </div>
-      <footer class="margin-top-md" role="contentinfo">
-        <div class="container">
-          <div class="row">
-            <div class="text-center">
-              <ul class="list-inline">
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="about.html">ABOUT</a></li>
-                <li><a href="news.html">NEWS</a></li>
-                <li><a href="shop.html">ONLINE SHOP</a></li>
-                <li><a href="contact.html">CONTACT</a></li>
-              </ul>
-              <small>&copy; Crescent Shoes.All Rights Reserved.</small>
-            </div><!-- /.text-center -->
-          </div><!-- /.row -->
-        </div><!-- /.container -->
-      </footer>
-      <script src="js/jquery-2.1.4.min.js"></script>
-      <script src="js/bootstrap.min.js"></script>
-      <script src="js/main.js"></script>
-    </body>
-    </html>
