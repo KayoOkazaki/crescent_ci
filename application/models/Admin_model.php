@@ -51,5 +51,44 @@ class Admin_model extends CI_Model {
 	public function is_logged_in() {
 		return ($this->session->userdata('admin_auth') == true);
 	}
+	/**********************************************************
+	 * 機能： セッション変数よりユーザIDを取得する
+	 * @param1： なし
+	 * @return： boolean TRUE:ログイン中 FALSE:ログインしてない
+	 **********************************************************/
+	public function get_id()
+	{
+		return $this->session->userdata('admin_id');
+	}
+	/**********************************************************
+	 * 機能： パスワードの変更
+	 * @param1： なし
+	 * @return： boolean TRUE:ログイン中 FALSE:ログインしてない
+	 **********************************************************/
+	public function edit_pass($newpass)
+	{
+		return $this->session->userdata('admin_id');
+	}
+	/**********************************************************
+	 * 機能： パスワード暗号化
+	 * @param1： ユーザid
+	 * @param2： パスワード
+	 * @return： 暗号化したパスワード
+	 **********************************************************/
+	public function hash_pass($id,$pass) {
+		//SHA2で暗号化
+		return hash('sha256', $pass . $id); //Salt用にidを付加
+	}
+	/**********************************************************
+	 * 機能： パスワードDB更新
+	 * @param1： ユーザID
+	 * @param2： 新しいパスワード
+	 * @return： なし
+	 **********************************************************/
+	public function update_admins($login_id, $login_pass){
+		$data = array('login_pass' => $login_pass);
+		$where = array('login_id' => $login_id);
+		$this->db->update('admins', $data, $where);
+	}
 }
 ?>

@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>お知らせの追加 | Crescent Shoes 管理</title>
+<title>Crescent Shoes 管理メニュー</title>
 <link rel="stylesheet" href="<?php echo base_url('css/admin.css');?>">
 </head>
 <body>

@@ -29,7 +29,7 @@ class Home extends CI_Controller {
 		}
 	}
 	/*************************
-	    Homeページ
+	    ホームページ
 	 **************************/
 	public function index() {
 		$this->load->view('header_v');
@@ -37,7 +37,7 @@ class Home extends CI_Controller {
 		$this->load->view('footer_v');
 	}
 	/*************************
-	    Aboutページ
+	    会社概要ページ
 	 **************************/
 	public function about_c() {
 		$this->load->view('header_v');
@@ -45,7 +45,7 @@ class Home extends CI_Controller {
 		$this->load->view('footer_v');
 	}
 	 /*************************
-	    Newsページ
+	    ニュースページ
 	 **************************/
 	public function news_c($page=1) {
 
@@ -79,7 +79,7 @@ class Home extends CI_Controller {
 		$this->load->view('footer_v');
 	}
 	/*************************
-	   Shopページ
+	   ショップページ
 	 **************************/
 	public function shop_c($page=1) {
 
@@ -124,7 +124,7 @@ class Home extends CI_Controller {
 	 	$this->load->view('footer_v');
 	}
 	/*************************
-	   コンタクトページ
+	   お問い合わせページ
 	 **************************/
 	public function contact_c() {
 
@@ -160,7 +160,7 @@ class Home extends CI_Controller {
 		}
 
 		//セッション変数がセットされているとき
-		if ($_SESSION['name'])
+		if ($this->session->userdata('name'))
 		{
 			//値をセット
 			$data['name'] = $_SESSION['name'];
@@ -178,13 +178,13 @@ class Home extends CI_Controller {
 			$data['message'] = '';
 		}
 
-		//コンタクトページ表示
+		//お問い合わせページ表示
 		$this->load->view('header_v');
 		$this->load->view('contact_v',$data);
 		$this->load->view('footer_v');
 	}
 	/*************************
-	   コンタクト確認ページ
+	   お問い合わせ確認ページ
 	 **************************/
 	public function contact_conf_c() {
 
@@ -196,10 +196,10 @@ class Home extends CI_Controller {
 		$data['tel'] = $this->session->userdata('tel');
 		$data['message'] = $this->session->userdata('message');
 
-		//セッション情報が正しくセットされているとき
+		//セッション情報に値セットされているとき
 		if ($data['name'] && $data['kana'] && $data['mail'] && $data['message'])
 		{
-			//コンタクト確認ページを表示
+			//お問い合わせ確認ページを表示
 			$this->load->view('header_v');
 			$this->load->view('contact_conf_v', $data);
 			$this->load->view('footer_v');
@@ -211,16 +211,21 @@ class Home extends CI_Controller {
 		//修正するをクリックしたとき
 		if ($this->input->post('back'))
 		{
+			//お問い合わせページへ戻る
 			redirect('home/contact_c');
 		}
 		//送信するをクリックしたとき
 		if ($this->input->post('send'))
 		{
+			//セッションデータ破棄
+			session_destroy();
+
+			//お問い合わせ完了ページ表示
 			redirect('home/contact_done_c');
 		}
 	}
 	/*************************
-	   コンタクトエラーページ
+	   お問い合わせエラーページ
 	 **************************/
 	public function contact_error_c() {
 
@@ -229,7 +234,7 @@ class Home extends CI_Controller {
 		$this->load->view('footer_v');
 	}
 	/*************************
-	 コンタクト完了ページ
+	   お問い合わせ完了ページ
 	 **************************/
 	public function contact_done_c() {
 

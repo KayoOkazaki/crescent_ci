@@ -3,6 +3,9 @@
         <div class="col-lg-12">
           <nav>
             <h1 class="page-header">Online Shop</h1>
+            <a class="button" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/controllers/Home.php">Controller</a>&nbsp&nbsp
+            <a class="button" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/views/shop_v.php">View</a>&nbsp&nbsp
+            <a class="button" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/models/Product_model.php">Model</a>
             <ol class="breadcrumb">
               <li><a href="<?php echo base_url('home')?>">Home</a></li>
               <li class="active">Online Shop</li>

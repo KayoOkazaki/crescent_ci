@@ -1,16 +1,3 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<title>ログイン | Crescent Shoes 管理</title>
-<link rel="stylesheet" href="<?php echo base_url('css/admin.css');?>">
-</head>
-<body>
-<header>
-  <div class="inner">
-    <span><a href="<?php echo base_url('');?>">Crescent Shoes 管理</a></span>
-  </div>
-</header>
 <div id="container">
   <main>
     <h1>ログイン</h1>

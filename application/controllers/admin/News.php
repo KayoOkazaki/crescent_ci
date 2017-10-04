@@ -58,7 +58,7 @@ class News extends CI_Controller {
 		$data['items'] = $this->News_model->find_by_page($page, self::NUM_PER_PAGE);
 
 		//取得したデータを一覧画面に表示する
-		$this->load->view('admin/news/news_header_v');
+		$this->load->view('admin/admin_header_v');
 		$this->load->view('admin/news/news_index_v',$data);
 	}
 	/*************************
@@ -105,7 +105,7 @@ class News extends CI_Controller {
 		}
 
 		//お知らせ追加ページ表示
-		$this->load->view('admin/news/news_header_v');
+		$this->load->view('admin/admin_header_v');
 		$this->load->view('admin/news/news_add_v',$res);
 	}
 	/*************************
@@ -114,7 +114,7 @@ class News extends CI_Controller {
 	public function add_done_c()
 	{
 		//追加完了ページ表示
-		$this->load->view('admin/news/news_header_v');
+		$this->load->view('admin/admin_header_v');
 		$this->load->view('admin/news/news_add_done_v');
 	}
 	/*************************
@@ -181,7 +181,7 @@ class News extends CI_Controller {
 		$data['file_name'] = $file_name;
 
 		//編集ページ表示
-		$this->load->view('admin/news/news_header_v');
+		$this->load->view('admin/admin_header_v');
 		$this->load->view('admin/news/news_edit_v',$data);
 
 	}
@@ -191,7 +191,7 @@ class News extends CI_Controller {
 	public function edit_done_c()
 	{
 		//編集完了ページ表示
-		$this->load->view('admin/news/news_header_v');
+		$this->load->view('admin/admin_header_v');
 		$this->load->view('admin/news/news_edit_done_v');
 	}
 	/*************************
@@ -220,7 +220,7 @@ class News extends CI_Controller {
 		$data['item'] = $this->News_model->find_by_id($id);
 
 		//削除ページ表示
-		$this->load->view('admin/news/news_header_v');
+		$this->load->view('admin/admin_header_v');
 		$this->load->view('admin/news/news_delete_v',$data);
 	}
 	/*************************
@@ -229,7 +229,7 @@ class News extends CI_Controller {
 	public function delete_done_c()
 	{
 		//削除完了ページ表示
-		$this->load->view('admin/news/news_header_v');
+		$this->load->view('admin/admin_header_v');
 		$this->load->view('admin/news/news_delete_done_v');
 	}
 	/**-----------------------------------------------------------------------
@@ -272,7 +272,7 @@ class News extends CI_Controller {
 		{
 			//アップロード失敗した時
 			$error = array('error' => $this->upload->display_errors());
-			$this->load->view('admin/news/news_header_v');
+			$this->load->view('admin/admin_header_v');
 			$this->load->view('admin/news/news_add_v',$error);
 
 		} else {
@@ -280,7 +280,7 @@ class News extends CI_Controller {
 			//アップロード成功した時
 			$this->output->set_output("アップロードファイル名：".$this->upload->data());
 			$data['upload_data'] = $this->upload->data();
-			$this->load->view('admin/news/news_header_v');
+			$this->load->view('admin/admin_header_v');
 			$this->load->view('admin/news/news_add_v',$data);
 		}
 	}

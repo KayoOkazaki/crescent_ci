@@ -3,6 +3,9 @@
         <div class="col-lg-12">
           <nav>
             <h1 class="page-header">News</h1>
+            <a class="button" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/controllers/Home.php">Controller</a>&nbsp&nbsp
+            <a class="button" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/views/news_v.php">View</a>&nbsp&nbsp
+            <a class="button" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/models/News_model.php">Model</a>
             <ol class="breadcrumb">
               <li><a href="<?php echo base_url('home');?>">Home</a></li>
               <li class="active">News</li>
@@ -15,7 +18,6 @@
 	</div>
     <div class="row">
       <div class="col-md-9 col-xs-12 margin-top-md">
-
       <?php foreach ($items as $item): ?>
         <div class="well well-lg">
           <div class="media">

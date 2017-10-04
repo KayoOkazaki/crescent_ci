@@ -3,7 +3,7 @@
     <h1>お知らせの削除</h1>
     <p>以下のお知らせを削除します。</p>
     <p>よろしければ「削除」ボタンを押してください。</p>
-    <form action="" method="post">
+    <form action="" method="post" >
     <table>
       <tr>
         <!------------------------
@@ -44,7 +44,7 @@
       <!------------------------
          削除・キャンセルボタン
       -------------------------->
-      <input type="submit" name="delete" value="削除">
+      <input type="submit" name="delete" value="削除" onclick="return submitChk()">
       <input type="submit" name="cancel" value="キャンセル">
     </p>
     </form>
@@ -55,3 +55,15 @@
 </div>
 </body>
 </html>
+<script>
+    /**
+     * 確認ダイアログの返り値によりフォーム送信
+    */
+    function submitChk () {
+
+        /* 確認ダイアログ表示 */
+        var flag = confirm ( "削除してもよろしいですか？\n\n削除したくない場合は[キャンセル]ボタンを押して下さい");
+        /* send_flg が TRUEなら送信、FALSEなら送信しない */
+        return flag;
+    }
+</script>
