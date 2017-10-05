@@ -13,7 +13,7 @@ class Product_model extends CI_Model {
 		$this->image_path = realpath(APPPATH. "../images/products");
 	}
 	/****************************************************
-	 * 機能： お知らせ(product)テーブルの件数を取得
+	 * 機能： 商品(product)テーブルの件数を取得
 	 * @param1： なし
 	 * @return： int 件数
 	 *****************************************************/
@@ -23,7 +23,7 @@ class Product_model extends CI_Model {
 		return $query->num_rows();
 	}
 	/****************************************************
-	 * 機能： 1ページ分のお知らせ(product)データを取得
+	 * 機能： 1ページ分の商品(product)データを取得
 	 * @param1： int $page 現在ページ数
 	 * @param2： int $perpage 1ページに表示する項目数
 	 * @return： obj 取得したnewsテーブルデータ
@@ -34,7 +34,7 @@ class Product_model extends CI_Model {
 		return $query->result();
 	}
 	/****************************************************
-	 * 機能： お知らせ(product)テーブルを追加
+	 * 機能： 商品(product)テーブルを追加
 	 * @param1： obj $data 追加する値
 	 * @return： なし
 	 *****************************************************/
@@ -43,7 +43,7 @@ class Product_model extends CI_Model {
 		$this->db->insert('product', $data);
 	}
 	/****************************************************
-	 * 機能： お知らせ(product)テーブルを取得
+	 * 機能： 商品(product)テーブルを取得
 	 * @param1： int $id 取得するテーブルid
 	 * @return： obj 取得したnewsテーブルデータ（1件）
 	 *****************************************************/
@@ -53,7 +53,7 @@ class Product_model extends CI_Model {
 
 	}
 	/****************************************************
-	 * 機能： お知らせ(product)テーブルを更新
+	 * 機能： 商品(product)テーブルを更新
 	 * @param1： obj $data 更新する値
 	 * @return： なし
 	 *****************************************************/
@@ -64,7 +64,7 @@ class Product_model extends CI_Model {
 
 	}
 	/****************************************************
-	 * 機能： お知らせ(product)テーブルを削除
+	 * 機能： 商品(product)テーブルを削除
 	 * @param1： int $id 削除するid
 	 * @return： なし
 	 *****************************************************/

@@ -116,6 +116,10 @@ td img {
   width:64px;
   height:64px;
 }
+.product > img {
+  width:75px;
+  height:50px;
+}
 
 #admin_index th:first-child, #admin_index th:nth-child(3){
   width:100px;

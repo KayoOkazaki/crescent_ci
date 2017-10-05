@@ -28,40 +28,40 @@
   </script>
 <div id="container">
   <main id="admin_index">
-    <h1>お知らせ一覧</h1>
+    <h1>商品一覧</h1>
     <nav>
        <a class="button c" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/controllers/admin/News.php">Controller</a>&nbsp&nbsp
        <a class="button v" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/views/admin/news/news_index_v.php">View</a>&nbsp&nbsp
        <a class="button m" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/models/News_model.php">Model</a>
     </nav>
-    <p><a href="<?php echo base_url('admin/news/add_c');?>">お知らせの追加</a></p>
+    <p><a href="<?php echo base_url('admin/news/add_c');?>">商品の追加</a></p>
     <div id="pages">
    		<?php echo $this->pagination->create_links(); ?>
 	</div>
     <table>
       <tr>
-        <th>日付</th>
-        <th>タイトル／お知らせ内容</th>
-        <th>画像(64x64)</th>
+        <th>商品名</th>
+        <th>商品コード／商品説明</th>
+        <th>画像(75x50)</th>
         <th>編集</th>
         <th>削除</th>
       </tr>
       <?php foreach ($items as $item): ?>
       <tr>
-        <td class="center"><?php echo $item->posted; ?></td>
+        <td class="center"><?php echo $item->product_name; ?></td>
         <td>
-        <span class="title"><?php echo $item->title; ?></span>
-        <?php echo $item->message; ?>
+        <span class="title"><?php echo $item->product_code; ?></span>
+        <?php echo $item->description; ?>
         </td>
-        <td class="center">
-        <?php if($item->image):?>
-        	<img src="<?php echo base_url('images/press/'.$item->image); ?>" width="64" height="64" alt="">
+        <td class="center product">
+        <?php if($item->main_img):?>
+        	<img src="<?php echo base_url('images/products/'.$item->main_img); ?>" width="75" height="50" alt="">
         <?php else:?>
-        	<img src="<?php echo base_url('images/press/press.png')?>" width="64" height="64" alt="">
+        	<img src="<?php echo base_url('images/products/press.png')?>" width="75" height="50" alt="">
         <?php endif;?>
         </td>
-        <td class="center"><a href="<?php echo base_url('admin/news/edit_c/'.$item->id);?>">編集</a></td>
-        <td class="center"><a href="<?php echo base_url('admin/news/delete_c/'.$item->id);?>">削除</a></td>
+        <td class="center"><a href="<?php echo base_url('admin/product/edit_c/'.$item->id);?>">編集</a></td>
+        <td class="center"><a href="<?php echo base_url('admin/product/delete_c/'.$item->id);?>">削除</a></td>
       </tr>
       <?php endforeach; ?>
     </table>
