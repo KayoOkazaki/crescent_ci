@@ -1,9 +1,40 @@
+<script>
+	$(function(){
+      $('.m').hover(
+        function(){
+          $(this).text('admin_model.php');
+        },
+        function(){
+          $(this).text('Model');
+        }
+      );
+      $('.v').hover(
+        function(){
+          $(this).text('login_v.php');
+        },
+        function(){
+          $(this).text('View');
+        }
+      );
+      $('.c').hover(
+        function(){
+          $(this).text('Auth.php');
+        },
+        function(){
+          $(this).text('Controller');
+        }
+      );
+    });
+</script>
 <div id="container">
   <main>
     <h1>ログイン</h1>
-<!--     <p class="error">ログインIDを入力してください。</p> -->
-<!--     <p class="error">パスワードを入力してください。</p> -->
-<!--     <p class="error">ログインIDまたはパスワードに誤りがあります。</p> -->
+    <nav>
+       <a class="button c" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/controllers/admin/Auth.php">Controller</a>&nbsp&nbsp
+       <a class="button v" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/views/admin/login_v.php">View</a>&nbsp&nbsp
+       <a class="button m" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/models/Admin_model.php">Model</a>
+    </nav>
+    <br>
     <span class="error"><?php echo validation_errors();?></span>
     <form action="" method="post">
     <table id="loginbox">

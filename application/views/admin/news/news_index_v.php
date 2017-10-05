@@ -1,6 +1,39 @@
+  <script>
+  	$(function(){
+      	$('.m').hover(
+            function(){
+            	$(this).text('News_model.php');
+             },
+           function(){
+            	$(this).text('Model');
+           }
+         );
+        $('.v').hover(
+            function(){
+             	$(this).text('news_index_v.php');
+            },
+            function(){
+             	$(this).text('View');
+            }
+         );
+        $('.c').hover(
+           function(){
+            	$(this).text('News.php');
+           },
+           function(){
+              $(this).text('Controller');
+           }
+         );
+      });
+  </script>
 <div id="container">
   <main id="admin_index">
     <h1>お知らせ一覧</h1>
+    <nav>
+       <a class="button c" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/controllers/admin/News.php">Controller</a>&nbsp&nbsp
+       <a class="button v" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/views/admin/news/news_index_v.php">View</a>&nbsp&nbsp
+       <a class="button m" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/models/News_model.php">Model</a>
+    </nav>
     <p><a href="<?php echo base_url('admin/news/add_c');?>">お知らせの追加</a></p>
     <div id="pages">
    		<?php echo $this->pagination->create_links(); ?>

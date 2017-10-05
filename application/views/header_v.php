@@ -10,6 +10,7 @@
   <title>Crescent Shoes</title>
   <link rel="shortcut icon" href="<?php echo base_url('images/fabicon.ico'); ?>images/favicon.ico">
   <link rel="stylesheet" href="<?php echo base_url('css/styles.css'); ?>">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <!-- Web Fonts -->
   <link href='http://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
   <!-- Font Awesome CSS -->

@@ -1,6 +1,40 @@
+<script>
+	$(function(){
+      $('.m').hover(
+        function(){
+          $(this).text('admin_model.php');
+        },
+        function(){
+          $(this).text('Model');
+        }
+      );
+      $('.v').hover(
+        function(){
+          $(this).text('edit_password_v.php');
+        },
+        function(){
+          $(this).text('View');
+        }
+      );
+      $('.c').hover(
+        function(){
+          $(this).text('Auth.php');
+        },
+        function(){
+          $(this).text('Controller');
+        }
+      );
+    });
+</script>
 <div id="container">
   <main>
     <h1>パスワードの変更</h1>
+    <nav>
+       <a class="button c" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/controllers/admin/Auth.php">Controller</a>&nbsp&nbsp
+       <a class="button v" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/views/admin/edit_password_v.php">View</a>&nbsp&nbsp
+       <a class="button m" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/models/Admin_model.php">Model</a>
+    </nav>
+
     <form action="" method="post">
       <!------------------------
           ログインID

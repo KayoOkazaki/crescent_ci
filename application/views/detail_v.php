@@ -1,8 +1,31 @@
+    <script>
+    	$(function(){
+        	$('.v').hover(
+              function(){
+              	$(this).text('detail_v.php');
+              },
+              function(){
+               	$(this).text('View');
+              }
+            );
+        	$('.c').hover(
+             function(){
+              	$(this).text('Home.php');
+             },
+             function(){
+                $(this).text('Controller');
+             }
+           );
+
+        });
+    </script>
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
           <nav>
             <h1 class="page-header">Product</h1>
+            <a class="button c" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/controllers/Home.php">Controller</a>&nbsp&nbsp
+            <a class="button v" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/views/detail_v.php">View</a>&nbsp&nbsp
             <ol class="breadcrumb">
               <li><a href="<?php echo base_url('home')?>">Home</a></li>
               <li class="active">Product</li>

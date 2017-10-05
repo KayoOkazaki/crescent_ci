@@ -1,48 +1,43 @@
-<?php
-require_once "../util.inc.php";
-require_once "../db.inc.php";
-
-define("IMAGE_PATH", "../images/press/");
-
-try {
-  //--------------------
-  // データベースの準備
-  //--------------------
-  $pdo = db_init();
-
-  //--------------------
-  // お知らせリストの取得
-  //--------------------
-  $sql = "SELECT * FROM news ORDER BY posted DESC";
-  $stmt = $pdo->query($sql);
-  $news = $stmt->fetchAll();
-}
-catch (PDOException $e) {
-  echo $e->getMessage();
-  exit;
-}
-?>
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<title>お知らせ一覧 | Crescent Shoes 管理</title>
-<link rel="stylesheet" href="css/admin.css">
-</head>
-<body id="admin_index">
-<header>
-  <div class="inner">
-    <span><a href="index.php">Crescent Shoes 管理</a></span>
-    <div id="account">
-      admin
-      [ <a href="logout.php">ログアウト</a> ]
-    </div>
-  </div>
-</header>
+  <script>
+  	$(function(){
+      	$('.m').hover(
+            function(){
+            	$(this).text('News_model.php');
+             },
+           function(){
+            	$(this).text('Model');
+           }
+         );
+        $('.v').hover(
+            function(){
+             	$(this).text('news_index_v.php');
+            },
+            function(){
+             	$(this).text('View');
+            }
+         );
+        $('.c').hover(
+           function(){
+            	$(this).text('News.php');
+           },
+           function(){
+              $(this).text('Controller');
+           }
+         );
+      });
+  </script>
 <div id="container">
-  <main>
+  <main id="admin_index">
     <h1>お知らせ一覧</h1>
-    <p><a href="news_add.php">お知らせの追加</a></p>
+    <nav>
+       <a class="button c" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/controllers/admin/News.php">Controller</a>&nbsp&nbsp
+       <a class="button v" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/views/admin/news/news_index_v.php">View</a>&nbsp&nbsp
+       <a class="button m" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/models/News_model.php">Model</a>
+    </nav>
+    <p><a href="<?php echo base_url('admin/news/add_c');?>">お知らせの追加</a></p>
+    <div id="pages">
+   		<?php echo $this->pagination->create_links(); ?>
+	</div>
     <table>
       <tr>
         <th>日付</th>
@@ -51,22 +46,22 @@ catch (PDOException $e) {
         <th>編集</th>
         <th>削除</th>
       </tr>
-      <?php foreach ($news as $item): ?>
+      <?php foreach ($items as $item): ?>
       <tr>
-        <td class="center"><?php echo h($item["posted"]); ?></td>
+        <td class="center"><?php echo $item->posted; ?></td>
         <td>
-        <span class="title"><?php echo h($item["title"]); ?></span>
-        <?php echo h($item["message"]); ?>
+        <span class="title"><?php echo $item->title; ?></span>
+        <?php echo $item->message; ?>
         </td>
         <td class="center">
-        <?php if($item["image"]):?>
-        <img src="<?php echo IMAGE_PATH . h($item["image"]); ?>" width="64" height="64" alt="">
+        <?php if($item->image):?>
+        	<img src="<?php echo base_url('images/press/'.$item->image); ?>" width="64" height="64" alt="">
         <?php else:?>
-        <img src="../images/press.png" width="64" height="64" alt="">
+        	<img src="<?php echo base_url('images/press/press.png')?>" width="64" height="64" alt="">
         <?php endif;?>
         </td>
-        <td class="center"><a href="news_edit.php?id=<?php echo h($item["id"]); ?>">編集</a></td>
-        <td class="center"><a href="news_delete.php?id=<?php echo h($item["id"]); ?>">削除</a></td>
+        <td class="center"><a href="<?php echo base_url('admin/news/edit_c/'.$item->id);?>">編集</a></td>
+        <td class="center"><a href="<?php echo base_url('admin/news/delete_c/'.$item->id);?>">削除</a></td>
       </tr>
       <?php endforeach; ?>
     </table>
