@@ -34,7 +34,7 @@
        <a class="button v" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/views/admin/news/news_index_v.php">View</a>&nbsp&nbsp
        <a class="button m" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/models/News_model.php">Model</a>
     </nav>
-    <p><a href="<?php echo base_url('admin/news/add_c');?>">商品の追加</a></p>
+    <p><a href="<?php echo base_url('admin/product/add_c');?>">商品の追加</a></p>
     <div id="pages">
    		<?php echo $this->pagination->create_links(); ?>
 	</div>

@@ -75,11 +75,13 @@ class Product_model extends CI_Model {
 	}
 	/****************************************************
 	 * 機能： ファイルアップロード
-	 * @param1： なし
+	 * @param1： アップロードファイル
+	 * @param2： リサイズ幅
+	 * @param3： リサイズ高
 	 * @return： $result['error']     エラーメッセージ
 	 *           $result['file_name'] アップロードファイル名
 	 *****************************************************/
-	function do_upload(){
+ 	public function do_upload($upfile,$width,$height){
 
 		//戻り値初期化
 		$result = array(
@@ -96,10 +98,11 @@ class Product_model extends CI_Model {
 		$config['overwrite'] = true; //アップロード先に同じ名前のファイルがあるとき上書きする
 
 		// 第2引数で条件を受け取ることができます。
-		$this->load->library("upload", $config);
+		$this->load->library("upload");
+ 		$this->upload->initialize($config);
 
 		//アップロード開始
-		if ( ! $this->upload->do_upload()) {
+ 		if ( ! $this->upload->do_upload($upfile)) {
 			//アップロード失敗した時エラーメッセージを返す
 			$result['error'] = $this->upload->display_errors();
 			return $result;
@@ -118,13 +121,14 @@ class Product_model extends CI_Model {
 				// リサイズされるときや、固定の値を指定したとき、
 				// もとの画像のアスペクト比を維持するかどうかを指定する
 				'maintain_ration' => true,
-				'width' => 64,
-				'height' => 64
+				'width' => $width,
+				'height' => $height
 		);
 
 		// イメージライブラリは次のように引数をとります。
 		// 引数はライブラリ読み込み前に定義しておきます。
-		$this->load->library('image_lib', $config);
+		$this->load->library('image_lib');
+		$this->upload->initialize($config);
 		$this->image_lib->resize();
 
 		return $result;

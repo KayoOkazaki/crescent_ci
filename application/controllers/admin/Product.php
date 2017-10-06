@@ -66,7 +66,9 @@ class Product extends CI_Controller {
 	 **************************/
 	public function add_c()
 	{
-		$res = array('error' => ' ','file_name' => ' ');
+
+		//エラーメッセージ初期化
+		$data['error'] = array(0=>'',1=>'',2=>'',3=>'',4=>'');
 
 		//キャンセルボタンクリックした時
 		if ($this->input->post('cancel'))
@@ -78,25 +80,53 @@ class Product extends CI_Controller {
 		//追加ボタンクリックした時
 		if ($this->input->post('upload'))
 		{
-			//ファイルをアップロード
-			$res = $this->Product_model->do_upload();
-
 			//バリデーションチェック
-			$this->form_validation->set_rules('product','商品名','required');
+			$this->form_validation->set_rules('product_name','商品名','required');
 			$this->form_validation->set_rules('product_code','商品コード','required');
 			$this->form_validation->set_rules('description','商品説明','required');
+			$this->form_validation->set_rules('price','価格','required');
 
 			//バリデーションチェックOKの時
 			if ($this->form_validation->run())
 			{
-				$this->output->set_output('レスポンス：'.$res['file_name']);
-				$product = new stdClass;
-				$product->product= $this->input->post('product');
-				$product->product_code= $this->input->post('product_code');
-				$product->description= $this->input->post('description');
-				$product->image = $res['file_name'];
+				//サブ画像をアップロード
+				for ($i = 0; $i < 4; $i++)
+				{
+					$fileName = 'image'. ($i+1);
+					if ($_FILES[$fileName]['name'] != '') {
+						//アップロード実行
+						$sub_res[$i] = $this->Product_model->do_upload($fileName, 600,600);
+						$data['error'][$i] = $sub_res[$i]['error'];
+				    }
+				}
 
-				//入力された値をDBに追加
+				//メイン画像をアップロード
+				//アップロードファイルが選択されている時
+				if ($_FILES['main_img']['name'] != '') {
+
+					//アップロード実行
+					$main_res = $this->Product_model->do_upload('main_img',750,500);
+					$data['error'][] = $main_res['error'];
+				}
+
+				//入力された値をオブジェクトにセット
+				$product = new stdClass;
+				$product->product_name = $this->input->post('product_name');
+				$product->product_code = $this->input->post('product_code');
+				$product->description = $this->input->post('description');
+				$product->price = $this->input->post('price');
+				$product->color = $this->input->post('color');
+				$product->material = $this->input->post('material');
+				$product->max_size = $this->input->post('max_size');
+				$product->min_size = $this->input->post('min_size');
+				$product->main_img = $_FILES['main_img']['name'];
+				$product->image1 = $_FILES['image1']['name'];
+				$product->image2 = $_FILES['image2']['name'];
+				$product->image3 = $_FILES['image3']['name'];
+				$product->image4 = $_FILES['image4']['name'];
+				$product->created = date('Y-m-d H:i:s');
+
+				//DBに追加
 				$this->Product_model->insert($product);
 
 				//商品完了ページへ遷移
@@ -106,7 +136,7 @@ class Product extends CI_Controller {
 
 		//商品追加ページ表示
 		$this->load->view('admin/admin_header_v');
-		$this->load->view('admin/product/product_add_v',$res);
+ 		$this->load->view('admin/product/product_add_v',$data);
 	}
 	/*************************
 	 商品追加完了画面
@@ -233,37 +263,37 @@ class Product extends CI_Controller {
 		$this->load->view('admin/product/product_delete_done_v');
 	}
 
-	/**-----------------------------------------------------------------------
-	 * 機能： ファイルアップロード処理
-	 *
-	 * @param1： なし
-	 * @return： なし
-	 -------------------------------------------------------------------------*/
-	function do_upload()
-	{
-		$config['upload_path'] = base_url('images/products/'); //アップロードされたファイルが置かれるフォルダパス
-		$config['allowed_types'] = 'gif|jpg|png'; //アップロードするファイルの種類を限定
-		$config['max_size']	= '100'; //アップロードできるファイルの最大サイズ (KB)
-		$config['max_width']  = '1024'; //ファイル幅の最大値 (px)
-		$config['max_height']  = '768'; //ファイル高さの最大値 (px)
-		$this->load->library('upload', $config);
+// 	/**-----------------------------------------------------------------------
+// 	 * 機能： ファイルアップロード処理
+// 	 *
+// 	 * @param1： なし
+// 	 * @return： なし
+// 	 -------------------------------------------------------------------------*/
+// 	function do_upload()
+// 	{
+// 		$config['upload_path'] = base_url('images/products/'); //アップロードされたファイルが置かれるフォルダパス
+// 		$config['allowed_types'] = 'gif|jpg|png'; //アップロードするファイルの種類を限定
+// 		$config['max_size']	= '100'; //アップロードできるファイルの最大サイズ (KB)
+// 		$config['max_width']  = '1024'; //ファイル幅の最大値 (px)
+// 		$config['max_height']  = '768'; //ファイル高さの最大値 (px)
+// 		$this->load->library('upload', $config);
 
-		//アップロード開始
-		if ( ! $this->upload->do_upload())
-		{
-			//アップロード失敗した時
-			$error = array('error' => $this->upload->display_errors());
-			$this->load->view('admin/admin_header_v');
-			$this->load->view('admin/product/product_add_v',$error);
+// 		//アップロード開始
+// 		if ( ! $this->upload->do_upload())
+// 		{
+// 			//アップロード失敗した時
+// 			$error = array('error' => $this->upload->display_errors());
+// // 			$this->load->view('admin/admin_header_v');
+// // 			$this->load->view('admin/product/product_add_v',$error);
 
-		} else {
+// 		} else {
 
-			//アップロード成功した時
-			$this->output->set_output("アップロードファイル名：".$this->upload->data());
-			$data['upload_data'] = $this->upload->data();
-			$this->load->view('admin/admin_header_v');
-			$this->load->view('admin/product/product_add_v',$data);
-		}
-	}
+// 			//アップロード成功した時
+// 			$this->output->set_output("アップロードファイル名：".$this->upload->data());
+// 			$data['upload_data'] = $this->upload->data();
+// 			$this->load->view('admin/admin_header_v');
+// 			$this->load->view('admin/product/product_add_v',$data);
+// 		}
+// 	}
 }
 ?>
