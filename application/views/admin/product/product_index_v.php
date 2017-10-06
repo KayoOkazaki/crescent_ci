@@ -2,7 +2,7 @@
   	$(function(){
       	$('.m').hover(
             function(){
-            	$(this).text('News_model.php');
+            	$(this).text('Product_model.php');
              },
            function(){
             	$(this).text('Model');
@@ -10,7 +10,7 @@
          );
         $('.v').hover(
             function(){
-             	$(this).text('news_index_v.php');
+             	$(this).text('product_index_v.php');
             },
             function(){
              	$(this).text('View');
@@ -18,7 +18,7 @@
          );
         $('.c').hover(
            function(){
-            	$(this).text('News.php');
+            	$(this).text('Product.php');
            },
            function(){
               $(this).text('Controller');
@@ -30,9 +30,9 @@
   <main id="admin_index">
     <h1>商品一覧</h1>
     <nav>
-       <a class="button c" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/controllers/admin/News.php">Controller</a>&nbsp&nbsp
-       <a class="button v" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/views/admin/news/news_index_v.php">View</a>&nbsp&nbsp
-       <a class="button m" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/models/News_model.php">Model</a>
+       <a class="button c" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/controllers/admin/Product.php">Controller</a>&nbsp&nbsp
+       <a class="button v" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/views/admin/product/product_index_v.php">View</a>&nbsp&nbsp
+       <a class="button m" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/models/Product_model.php">Model</a>
     </nav>
     <p><a href="<?php echo base_url('admin/product/add_c');?>">商品の追加</a></p>
     <div id="pages">
