@@ -93,6 +93,7 @@ class Product extends CI_Controller {
 				for ($i = 0; $i < 4; $i++)
 				{
 					$fileName = 'image'. ($i+1);
+					//アップロードファイルが選択されている時
 					if ($_FILES[$fileName]['name'] != '') {
 						//アップロード実行
 						$sub_res[$i] = $this->Product_model->do_upload($fileName, 600,600);
@@ -103,7 +104,6 @@ class Product extends CI_Controller {
 				//メイン画像をアップロード
 				//アップロードファイルが選択されている時
 				if ($_FILES['main_img']['name'] != '') {
-
 					//アップロード実行
 					$main_res = $this->Product_model->do_upload('main_img',750,500);
 					$data['error'][] = $main_res['error'];
@@ -262,38 +262,5 @@ class Product extends CI_Controller {
 		$this->load->view('admin/admin_header_v');
 		$this->load->view('admin/product/product_delete_done_v');
 	}
-
-// 	/**-----------------------------------------------------------------------
-// 	 * 機能： ファイルアップロード処理
-// 	 *
-// 	 * @param1： なし
-// 	 * @return： なし
-// 	 -------------------------------------------------------------------------*/
-// 	function do_upload()
-// 	{
-// 		$config['upload_path'] = base_url('images/products/'); //アップロードされたファイルが置かれるフォルダパス
-// 		$config['allowed_types'] = 'gif|jpg|png'; //アップロードするファイルの種類を限定
-// 		$config['max_size']	= '100'; //アップロードできるファイルの最大サイズ (KB)
-// 		$config['max_width']  = '1024'; //ファイル幅の最大値 (px)
-// 		$config['max_height']  = '768'; //ファイル高さの最大値 (px)
-// 		$this->load->library('upload', $config);
-
-// 		//アップロード開始
-// 		if ( ! $this->upload->do_upload())
-// 		{
-// 			//アップロード失敗した時
-// 			$error = array('error' => $this->upload->display_errors());
-// // 			$this->load->view('admin/admin_header_v');
-// // 			$this->load->view('admin/product/product_add_v',$error);
-
-// 		} else {
-
-// 			//アップロード成功した時
-// 			$this->output->set_output("アップロードファイル名：".$this->upload->data());
-// 			$data['upload_data'] = $this->upload->data();
-// 			$this->load->view('admin/admin_header_v');
-// 			$this->load->view('admin/product/product_add_v',$data);
-// 		}
-// 	}
 }
 ?>
