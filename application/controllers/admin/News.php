@@ -252,37 +252,6 @@ class News extends CI_Controller {
 
 		return $result;
 	}
-	/**-----------------------------------------------------------------------
-	 * 機能： ファイルアップロード処理
-	 *
-	 * @param1： なし
-	 * @return： なし
-	 -------------------------------------------------------------------------*/
-	function do_upload()
-	{
-		$config['upload_path'] = base_url('images/news/'); //アップロードされたファイルが置かれるフォルダパス
-		$config['allowed_types'] = 'gif|jpg|png'; //アップロードするファイルの種類を限定
-		$config['max_size']	= '100'; //アップロードできるファイルの最大サイズ (KB)
-		$config['max_width']  = '1024'; //ファイル幅の最大値 (px)
-		$config['max_height']  = '768'; //ファイル高さの最大値 (px)
-		$this->load->library('upload', $config);
 
-		//アップロード開始
-		if ( ! $this->upload->do_upload())
-		{
-			//アップロード失敗した時
-			$error = array('error' => $this->upload->display_errors());
-			$this->load->view('admin/admin_header_v');
-			$this->load->view('admin/news/news_add_v',$error);
-
-		} else {
-
-			//アップロード成功した時
-			$this->output->set_output("アップロードファイル名：".$this->upload->data());
-			$data['upload_data'] = $this->upload->data();
-			$this->load->view('admin/admin_header_v');
-			$this->load->view('admin/news/news_add_v',$data);
-		}
-	}
 }
 ?>
