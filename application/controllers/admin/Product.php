@@ -152,7 +152,8 @@ class Product extends CI_Controller {
 	 **************************/
 	public function edit_c($id)
 	{
-		$error = '';
+		//初期化
+		$data['error'] = array(0=>'',1=>'',2=>'',3=>'',4=>'');
 		$file_name = '';
 
 		//キャンセルボタンクリックした時
@@ -166,7 +167,7 @@ class Product extends CI_Controller {
 		if ($this->input->post('upload')) {
 
 			//画像の変更をする時
-			if( ! $this->input->post('imageflg'))
+			if( ! $this->input->post('main_imgflg'))
 			{
 				//ファイルをアップロード
 				$res = $this->Product_model->do_upload();
@@ -175,8 +176,27 @@ class Product extends CI_Controller {
 				$error= $res['error'];
 			}
 
+			//サブ画像をアップロード
+			for ($i = 0; $i < 4; $i++) {
+				$fileName = 'image'. ($i+1);
+
+				//サブ画像の変更をする時
+				if ( ! $this->input->post($fileName)) {
+					//アップロード実行
+					$sub_res[$i] = $this->Product_model->do_upload($fileName, 600,600);
+					$data['error'][$i] = $sub_res[$i]['error'];
+				}
+			}
+
+			//メイン画像をアップロード
+			if ( ! $this->input->post('main_imgflg')) { //メイン画像の変更をする時
+				//アップロード実行
+				$main_res = $this->Product_model->do_upload('main_img',750,500);
+				$data['error'][] = $main_res['error'];
+			}
+
 			//バリデーションチェック
-			$this->form_validation->set_rules('product','商品名','required');
+			$this->form_validation->set_rules('product_name','商品名','required');
 			$this->form_validation->set_rules('product_code','商品コード','required');
 			$this->form_validation->set_rules('description','商品説明','required');
 
@@ -185,15 +205,33 @@ class Product extends CI_Controller {
 			{
 				$product = new stdClass;
 				$product->id = $id;
-				$product->posted = $this->input->post('posted');
-				$product->title = $this->input->post('title');
-				$product->message = $this->input->post('message');
+				$product->product_name = $this->input->post('product_name');
+				$product->product_code = $this->input->post('product_code');
+				$product->description = $this->input->post('description');
+				$product->price = $this->input->post('price');
+				$product->color = $this->input->post('color');
+				$product->material = $this->input->post('material');
+				$product->max_size = $this->input->post('max_size');
+				$product->min_size = $this->input->post('min_size');
+				$product->created = date('Y-m-d H:i:s');
 
-				//画像の変更をする時
-				if ( ! $this->input->post('imageflg')) {
+				//メイン画像の変更をする時
+				if ( ! $this->input->post('main_imgflg')) {
 
 					//アップロードファイル名をセット
-					$product->image = $res['file_name'];
+					$product->main_img= $_FILES['main_img']['name'];
+				}
+
+				//サブ画像
+				for ($i=0; $i < 4; $i++) {
+					$fileName = 'image'. ($i+1);
+
+					//サブ画像の変更をする時
+					if ( ! $this->input->post($fileName)) {
+
+						//アップロードファイル名をセット
+						$product->$fileName = $_FILES[$fileName]['name'];
+					}
 				}
 
 				//入力された値をDBに追加
@@ -207,7 +245,6 @@ class Product extends CI_Controller {
 		$data['item'] = $this->Product_model->find_by_id($id);
 
 		//アップロード情報をセット
-		$data['error'] = $error;
 		$data['file_name'] = $file_name;
 
 		//編集ページ表示
