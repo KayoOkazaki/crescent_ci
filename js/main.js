@@ -52,7 +52,7 @@ $(function(){
         $('input[name="quantity"]').val(newValue);
         return false;
     });
-    
+
     // マイナスボタンで数量減
     $('.fa-minus').parent().click(function(){
         var newValue = parseInt($('input[name="quantity"]').val()) - 1;

@@ -13,7 +13,7 @@
 	    );
 	    $('.v').hover(
 	      function(){
-	        $(this).text('product_add_v.php');
+	        $(this).text('product_edit_v.php');
 	      },
 	      function(){
 	        $(this).text('View');
@@ -108,7 +108,7 @@
     <h1>商品の編集</h1>
     <nav>
        <a class="button c" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/controllers/admin/Product.php">Controller</a>&nbsp&nbsp
-       <a class="button v" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/views/admin/product/product_add_v.php">View</a>&nbsp&nbsp
+       <a class="button v" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/views/admin/product/product_edit_v.php">View</a>&nbsp&nbsp
        <a class="button m" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/models/Product_model.php">Model</a>
     </nav>
     <p>情報を入力し、「保存」ボタンを押してください。</p>

@@ -188,8 +188,7 @@ class Product extends CI_Controller {
 				}
 
 				//メイン画像をアップロード
-				$flg = 'main_imgflg';
-				if ( ! $this->input->post($flg)) { //メイン画像の変更をする時(チェックボックスOFF)
+				if ( ! $this->input->post('main_imgflg')) { //メイン画像の変更をする時(チェックボックスOFF)
 					//アップロード実行
 					$main_res = $this->Product_model->do_upload('main_img',750,500);
 					$data['error'][] = $main_res['error'];
