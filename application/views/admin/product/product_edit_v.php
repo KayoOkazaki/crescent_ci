@@ -105,17 +105,17 @@
 </script>
 <div id="container">
   <main>
-    <h1>商品の追加</h1>
+    <h1>商品の編集</h1>
     <nav>
        <a class="button c" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/controllers/admin/Product.php">Controller</a>&nbsp&nbsp
        <a class="button v" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/views/admin/product/product_add_v.php">View</a>&nbsp&nbsp
        <a class="button m" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/models/Product_model.php">Model</a>
     </nav>
-    <p>情報を入力し、「追加」ボタンを押してください。</p>
+    <p>情報を入力し、「保存」ボタンを押してください。</p>
 <!--<form action="" method="post" enctype="multipart/form-data"> -->
 
-	<!-- admin/product/add_c コントローラに情報がPOSTされる -->
-	<?php echo form_open_multipart("admin/product/add_c");?>
+	<!-- admin/product/edit_c コントローラに情報がPOSTされる -->
+	<?php echo form_open_multipart("admin/product/edit_c/".$item->id);?>
 
     <table>
         <!------------------------
@@ -272,11 +272,11 @@
 				echo form_upload($data);
 
 				//チェックボックスの設定
-				$data = array(
+				$data2 = array(
 				'name' => 'imgflg1', 'id' => 'imgflg1',
 				'value' => '画像の変更をしない', 'checked' => set_value('imgflg1',true)
 				);
-				echo form_checkbox($data);
+				echo form_checkbox($data2);
 				echo form_label('画像の変更をしない','imgflg1');
 			?>
           <!--画像 -->
@@ -347,7 +347,7 @@
           サブ画像４
        -------------------------->
       <tr>
-        <th class="fixed">サブ画像３（50×50）</th>
+        <th class="fixed">サブ画像４（50×50）</th>
         <td>
       <!--ファイルアップロード -->
 			<?php

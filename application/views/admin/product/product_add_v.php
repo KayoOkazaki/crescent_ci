@@ -1,29 +1,103 @@
 <script>
 	$(function(){
-      $('.m').hover(
-        function(){
-          $(this).text('Product_model.php');
-        },
-        function(){
-          $(this).text('Model');
-        }
-      );
-      $('.v').hover(
-        function(){
-          $(this).text('product_add_v.php');
-        },
-        function(){
-          $(this).text('View');
-        }
-      );
-      $('.c').hover(
-        function(){
-          $(this).text('Product.php');
-        },
-        function(){
-          $(this).text('Controller');
-        }
-      );
+	    $('.m').hover(
+	      function(){
+	        $(this).text('Product_model.php');
+	      },
+	      function(){
+	        $(this).text('Model');
+	      }
+	    );
+	    $('.v').hover(
+	      function(){
+	        $(this).text('product_add_v.php');
+	      },
+	      function(){
+	        $(this).text('View');
+	      }
+	    );
+	    $('.c').hover(
+	      function(){
+	        $(this).text('Product.php');
+	      },
+	      function(){
+	        $(this).text('Controller');
+	      }
+	    );
+   	   /******************************
+    	  アップロードファイル選択時に
+    	  サムネイル画像を表示する
+    	******************************/
+  		$('#main_upfile').change(function(){
+  		  if (this.files.length > 0) {
+  		    // 選択されたファイル情報を取得
+  		    var file = this.files[0];
+
+  		    // readerのresultプロパティに、データURLとしてエンコードされたファイルデータを格納
+  		    var reader = new FileReader();
+  		    reader.readAsDataURL(file);
+
+  		    reader.onload = function() {
+  		      $('#main_thumb').attr('src', reader.result );
+  		    }
+  		  }
+	  	});
+	  	$('#sub_upfile1').change(function(){
+		    if (this.files.length > 0) {
+		      // 選択されたファイル情報を取得
+		      var file = this.files[0];
+
+		      // readerのresultプロパティに、データURLとしてエンコードされたファイルデータを格納
+		      var reader = new FileReader();
+		      reader.readAsDataURL(file);
+
+		      reader.onload = function() {
+		        $('#sub_thumb1').attr('src', reader.result );
+		      }
+		    }
+		});
+	  	$('#sub_upfile2').change(function(){
+		    if (this.files.length > 0) {
+		      // 選択されたファイル情報を取得
+		      var file = this.files[0];
+
+		      // readerのresultプロパティに、データURLとしてエンコードされたファイルデータを格納
+		      var reader = new FileReader();
+		      reader.readAsDataURL(file);
+
+		      reader.onload = function() {
+		        $('#sub_thumb2').attr('src', reader.result );
+		      }
+		    }
+		});
+	  	$('#sub_upfile3').change(function(){
+		    if (this.files.length > 0) {
+		      // 選択されたファイル情報を取得
+		      var file = this.files[0];
+
+		      // readerのresultプロパティに、データURLとしてエンコードされたファイルデータを格納
+		      var reader = new FileReader();
+		      reader.readAsDataURL(file);
+
+		      reader.onload = function() {
+		        $('#sub_thumb3').attr('src', reader.result );
+		      }
+		    }
+		});
+	  	$('#sub_upfile4').change(function(){
+		    if (this.files.length > 0) {
+		      // 選択されたファイル情報を取得
+		      var file = this.files[0];
+
+		      // readerのresultプロパティに、データURLとしてエンコードされたファイルデータを格納
+		      var reader = new FileReader();
+		      reader.readAsDataURL(file);
+
+		      reader.onload = function() {
+		        $('#sub_thumb4').attr('src', reader.result );
+		      }
+		    }
+		});
     });
 </script>
 <div id="container">
@@ -162,13 +236,14 @@
         <th class="fixed">メイン画像（75×50）</th>
         <td>
             <!--ファイルアップロード -->
-
-			<!-- デフォルトのファイルアップロード名は『userfile』 -->
-			<?php echo form_upload('main_img');?>
-
+			<?php
+				$data = array('name' => 'main_img', 'id' => 'main_upfile');
+				echo form_upload($data);
+			?>
+          <!--画像 -->
+          <div class="product"><img id="main_thumb" src="" width="75" height="50" alt=""></div>
           <!--エラーメッセージ -->
           <div class="error"><?php echo $error[4] ;?></div>
-
           <div>画像は75x50ピクセルで表示されます</div>
         </td>
       </tr>
@@ -178,11 +253,13 @@
       <tr>
         <th class="fixed">サブ画像１（50×50）</th>
         <td>
-            <!--ファイルアップロード -->
-
-			<!-- デフォルトのファイルアップロード名は『userfile』 -->
-			<?php echo form_upload('image1');?>
-
+         <!--ファイルアップロード -->
+			<?php
+				$data = array('name' => 'image1', 'id' => 'sub_upfile1');
+				echo form_upload($data);
+			?>
+          <!--画像 -->
+          <div class="product"><img id="sub_thumb1" src="" width="75" height="50" alt=""></div>
           <!--エラーメッセージ -->
           <div class="error"><?php echo $error[0] ;?></div>
 
@@ -196,10 +273,12 @@
         <th class="fixed">サブ画像２（50×50）</th>
         <td>
             <!--ファイルアップロード -->
-
-			<!-- デフォルトのファイルアップロード名は『userfile』 -->
-			<?php echo form_upload('image2');?>
-
+			<?php
+				$data = array('name' => 'image2', 'id' => 'sub_upfile2');
+				echo form_upload($data);
+			?>
+          <!--画像 -->
+          <div class="product"><img id="sub_thumb2" src="" width="75" height="50" alt=""></div>
           <!--エラーメッセージ -->
           <div class="error"><?php echo $error[1];?></div>
 
@@ -213,10 +292,12 @@
         <th class="fixed">サブ画像３（50×50）</th>
         <td>
             <!--ファイルアップロード -->
-
-			<!-- デフォルトのファイルアップロード名は『userfile』 -->
-			<?php echo form_upload('image3');?>
-
+			<?php
+				$data = array('name' => 'image3', 'id' => 'sub_upfile3');
+				echo form_upload($data);
+			?>
+          <!--画像 -->
+          <div class="product"><img id="sub_thumb3" src="" width="75" height="50" alt=""></div>
           <!--エラーメッセージ -->
           <div class="error"><?php echo $error[2];?></div>
 
@@ -227,13 +308,15 @@
           サブ画像４
        -------------------------->
       <tr>
-        <th class="fixed">サブ画像３（50×50）</th>
+        <th class="fixed">サブ画像４（50×50）</th>
         <td>
             <!--ファイルアップロード -->
-
-			<!-- デフォルトのファイルアップロード名は『userfile』 -->
-			<?php echo form_upload('image4');?>
-
+			<?php
+				$data = array('name' => 'image4', 'id' => 'sub_upfile4');
+				echo form_upload($data);
+			?>
+          <!--画像 -->
+          <div class="product"><img id="sub_thumb4" src="" width="75" height="50" alt=""></div>
           <!--エラーメッセージ -->
           <div class="error"><?php echo $error[3];?></div>
 

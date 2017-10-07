@@ -1,6 +1,9 @@
 <script>
 	$(function(){
-      $('.m').hover(
+      /******************************
+  	    Githubボタンの設定
+  	  *******************************/
+	  $('.m').hover(
         function(){
           $(this).text('News_model.php');
         },
