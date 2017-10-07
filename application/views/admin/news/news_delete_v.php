@@ -4,29 +4,29 @@
 		  Githubボタンの設定
 		*******************************/
 	    $('.m').hover(
-	      function(){
-	        $(this).text('Product_model.php');
-	      },
-	      function(){
-	        $(this).text('Model');
-	      }
-	    );
-	    $('.v').hover(
-	      function(){
-	        $(this).text('product_delete_v.php');
-	      },
-	      function(){
-	        $(this).text('View');
-	      }
-	    );
-	    $('.c').hover(
-	      function(){
-	        $(this).text('Product.php');
-	      },
-	      function(){
-	        $(this).text('Controller');
-	      }
-	    );
+	       function(){
+	         $(this).text('News_model.php');
+	       },
+	       function(){
+	         $(this).text('Model');
+	       }
+	     );
+	     $('.v').hover(
+	       function(){
+	         $(this).text('news_delete_v.php');
+	       },
+	       function(){
+	         $(this).text('View');
+	       }
+	     );
+	     $('.c').hover(
+	       function(){
+	         $(this).text('News.php');
+	       },
+	       function(){
+	         $(this).text('Controller');
+	       }
+	     );
     });
 </script>
 <div id="container">
