@@ -54,7 +54,7 @@
             	'type' => 'password',
            		'name' => 'pass',
            		'id' => 'pass',
-           		'value' => set_value('pass','')
+           		'value' => ''
             ));?>
             <span class='error'><?php echo form_error('pass');?></span>
             <span class='error'><?php echo form_error('login');?></span>
@@ -66,7 +66,7 @@
             	'type' => 'password',
             	'name' => 'newpass',
            		'id' => 'newpass',
-            	'value' => set_value('newpass','')
+            	'value' => ''
             ));?>
             <span class='error'><?php echo form_error('newpass');?></span><br>
       <p><input type="submit" name="submit" value="パスワードを変更する" onclick="return submitChk()"></p>
@@ -89,3 +89,4 @@
         return flag;
     }
 </script>
+
