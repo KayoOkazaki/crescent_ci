@@ -2,7 +2,7 @@
 class News extends CI_Controller {
 
 	// 1ページあたりの表示件数
-	const NUM_PER_PAGE = 5;
+	const NUM_PER_PAGE = 2;
 
 	public function __construct() {
 		parent::__construct();
@@ -46,12 +46,43 @@ class News extends CI_Controller {
 		//ページ番号がURIパスに付加され、引数：$pageに現ページ数が渡されます。
 		$config['use_page_numbers'] = true;
 
+		//ページネーションリンク全体を階層化するHTML先頭～終了タグ文字列を指定
+		$config['full_tag_open'] = '<ul class="pageNav04">';
+		$config['full_tag_close'] = '</ul>';
+
+		//ページネーションリンクの「<a>」アンカータグに「clsas=」属性を設定
+		// 		$config['anchor_class'] = 'page-link';
+		$config['attributes'] = array('class' => 'page-link');
+
+		//最初のページへのリンクタグを階層化するHTML開始～終了タグ文字列を指定
+		$config['first_link'] = '&lsaquo;&lsaquo;'; //「最初のページへ」のリンクを表わす文字列を指定
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+
+		//現在ページ番号のリンクタグを階層化するHTML開始～終了タグ文字列指定
+		$config['cur_tag_open'] = '<li><span>';
+		$config['cur_tag_close'] = '</span></li>';
+
+		//ページ番号のリンクタグを階層化するHTML開始～終了タグ文字列を指定
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+
+		//前のページへのリンクタグを階層化するHTML開始～終了タグ文字列を指定
+		$config['prev_link'] = '&laquo; 前'; //「前のページへ」のリンクを表わす文字列
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+
+		//次のページへのリンクタグを階層化するHTML開始～終了タグ文字列を指定
+		$config['next_link'] = '次 &raquo;'; //「次のページへ」のリンクを表わす文字列
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+		//最後のページへのリンクタグを階層化するHTML開始～終了タグ文字列を指定
+		$config['last_link'] = '&rsaquo;&rsaquo;'; //「最後のページへ」のリンクを表わす文字列
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+
 		//上記設定内容をページネーションライブラリに上書き
-		$config['prev_link'] = '前ページ';
-		$config['next_link'] = '次ページ';
-		$config['prev_tag_close'] = ' | ';
-		$config['num_tag_close'] = ' | ';
-		$config['cur_tag_close'] = '</strong> | ';
 		$this->pagination->initialize($config);
 
 		//現在のページ数と1ページ毎の項目数をもとに、表示するべきデータを取得する

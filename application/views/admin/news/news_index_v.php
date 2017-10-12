@@ -26,6 +26,44 @@
          );
       });
   </script>
+  <style>
+  #pages {
+  	margin-right: auto;
+  }
+  ul li {
+  	list-style-type: none;
+  }
+	#pages ul.pageNav04 {
+		/zoom: 1;
+		overflow: hidden;
+		margin: 0 0 20px;
+		padding: 0;
+		background: #fff;
+	}
+
+	#pages ul.pageNav04 li {
+		float: left;
+		margin: 0 5px 5px 0;
+	}
+
+	#pages ul.pageNav04 li span,
+	#pages ul.pageNav04 li a {
+		float: left;
+		padding: 5px 12px;
+		background: #e1ebfa;
+		border: 1px solid #339;
+		color: #000;
+	}
+
+	#pages ul.pageNav04 li span {
+		background: #fff;
+	}
+
+	#pages ul.pageNav04 li a:hover {
+		background: #ccf;
+		border-color: #000;
+	}
+  </style>
 <div id="container">
   <main id="admin_index">
     <h1>お知らせ一覧</h1>
@@ -37,6 +75,16 @@
     <p><a href="<?php echo base_url('admin/news/add_c');?>">お知らせの追加</a></p>
     <div id="pages">
    		<?php echo $this->pagination->create_links(); ?>
+<!--    		<ul class="pageNav04"> -->
+<!-- 			<li><a href="1.html">&laquo; 前</a></li> -->
+<!-- 			<li><a href="1.html">1</a></li> -->
+<!-- 			<li><span>2</span></li> -->
+<!-- 			<li><a href="3.html">3</a></li> -->
+<!-- 			<li><a href="4.html">4</a></li> -->
+<!-- 			<li><a href="5.html">5</a></li> -->
+<!-- 			<li><a href="6.html">6</a></li> -->
+<!-- 			<li><a href="3.html">次 &raquo;</a></li> -->
+<!-- 		</ul> -->
 	</div>
     <table>
       <tr>

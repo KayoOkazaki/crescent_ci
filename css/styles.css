@@ -7810,3 +7810,40 @@ footer .text-center a {
   -webkit-transform: scale(1);
   transform: scale(1);
 }
+/*pagination style*/
+ #pages {
+ 	margin-right: auto;
+ }
+ ul li {
+ 	list-style-type: none;
+ }
+#pages ul.pageNav04 {
+	/zoom: 1;
+	overflow: hidden;
+	margin: 0 0 20px;
+	padding: 0;
+	background: #fff;
+}
+
+#pages ul.pageNav04 li {
+	float: left;
+	margin: 0 5px 5px 0;
+}
+
+#pages ul.pageNav04 li span,
+#pages ul.pageNav04 li a {
+	float: left;
+	padding: 5px 12px;
+	background: #e1ebfa;
+	border: 1px solid #339;
+	color: #000;
+}
+
+#pages ul.pageNav04 li span {
+	background: #fff;
+}
+
+#pages ul.pageNav04 li a:hover {
+	background: #ccf;
+	border-color: #000;
+}
