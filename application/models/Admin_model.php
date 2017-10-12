@@ -61,15 +61,6 @@ class Admin_model extends CI_Model {
 		return $this->session->userdata('admin_id');
 	}
 	/**********************************************************
-	 * 機能： パスワードの変更
-	 * @param1： なし
-	 * @return： boolean TRUE:ログイン中 FALSE:ログインしてない
-	 **********************************************************/
-	public function edit_pass($newpass)
-	{
-		return $this->session->userdata('admin_id');
-	}
-	/**********************************************************
 	 * 機能： パスワード暗号化
 	 * @param1： ユーザid
 	 * @param2： パスワード
@@ -86,9 +77,11 @@ class Admin_model extends CI_Model {
 	 * @return： なし
 	 **********************************************************/
 	public function update_admins($login_id, $login_pass){
+
 		$data = array('login_pass' => $login_pass);
 		$where = array('login_id' => $login_id);
 		$this->db->update('admins', $data, $where);
+
 	}
 }
 ?>
