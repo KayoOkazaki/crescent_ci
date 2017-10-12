@@ -21,9 +21,19 @@ class News_model extends CI_Model {
 	 *****************************************************/
 	public function getCount($month=0)
 	{
-		$where = ($month != 0) ? ' WHERE month = '.$month : '';
-		$query = $this->db->query('SELECT * FROM news '.$where);
-		return $query->num_rows();
+	// ★直接SQL文記述する方法
+// 		$where = ($month != 0) ? ' WHERE month = '.$month : '';
+// 		$query = $this->db->query('SELECT * FROM news '.$where);
+// 		return $query->num_rows();
+
+	// ★ActiveRecordでクエリ作成する方法
+		$this->db->select('*');
+		$this->db->from('news');
+		if ($month != 0) {
+			$this->db->where('month', $month);
+		}
+		return $this->db->get()->num_rows();
+
 	}
 	/****************************************************
 	 * 機能： お知らせ(news)テーブルを取得
@@ -32,8 +42,15 @@ class News_model extends CI_Model {
 	 *****************************************************/
 	public function getNews($field='*')
 	{
-		$query = $this->db->query('SELECT '.$field.' FROM news');
-		return $query->result();
+	// ★直接SQL文記述する方法
+// 		$query = $this->db->query('SELECT '.$field.' FROM news');
+// 		return $query->result();
+
+	// ★ActiveRecordでクエリ作成する方法
+		$this->db->select($field);
+		$this->db->from('news');
+		return $this->db->get()->result();
+
 	}
 	/****************************************************
 	 * 機能： 1ページ分のお知らせ(news)データを取得
@@ -43,10 +60,29 @@ class News_model extends CI_Model {
 	 * @return： obj 取得したnewsテーブルデータ
 	 *****************************************************/
 	public function find_by_page($page, $perpage, $month=0) {
+
+		//開始レコード位置設定
 		$start = (($page * $perpage)-$perpage);
-		$where = ($month != 0) ? ' WHERE month = '.$month : '';
-		$query = $this->db->query('SELECT * FROM news ' .$where. ' ORDER BY posted DESC LIMIT ?, ?', array($start,$perpage));
-		return $query->result();
+
+	// ★直接SQL文記述する方法
+// 		$where = ($month != 0) ? ' WHERE month = '.$month : '';
+// 		$query = $this->db->query('SELECT * FROM news ' .$where. ' ORDER BY posted DESC LIMIT ?, ?', array($start,$perpage));
+// 		return $query->result();
+
+
+	// ★ActiveRecordでクエリ作成する方法
+ 		$this->db->select('*');
+		$this->db->from('news');
+		if ($month!=0) {
+			$this->db->where('month',$month);
+		}
+		$this->db->order_by('posted DESC');
+		$this->db->limit($perpage);
+		$this->db->offset($start);
+
+		//クエリ実行し結果を返す
+		return $this->db->get()->result();
+
 	}
 	/****************************************************
 	 * 機能： お知らせ(news)テーブルを追加
@@ -64,7 +100,10 @@ class News_model extends CI_Model {
 	 *****************************************************/
 	public function find_by_id($id) {
 
-		return $this->db->get_where('news', array('id' => $id))->row();
+		$where = array(
+				'id' => $id
+		);
+		return $this->db->get_where('news', $where)->row();
 
 	}
 	/****************************************************
@@ -85,7 +124,10 @@ class News_model extends CI_Model {
 	 *****************************************************/
 	public function delete($id) {
 
-		$this->db->delete('news', array('id'=> $id));
+		$where = array(
+				'id' => $id
+		);
+		$this->db->delete('news', $where);
 
 	}
 	/****************************************************
