@@ -16,23 +16,36 @@ class News_model extends CI_Model {
 
 	/****************************************************
 	 * 機能： お知らせ(news)テーブルの件数を取得
-	 * @param1： なし
+	 * @param1： int $month 絞り込み条件
 	 * @return： int 件数
 	 *****************************************************/
-	public function getCount()
+	public function getCount($month=0)
 	{
-		$query = $this->db->query('SELECT * FROM news');
+		$where = ($month != 0) ? ' WHERE month = '.$month : '';
+		$query = $this->db->query('SELECT * FROM news '.$where);
 		return $query->num_rows();
+	}
+	/****************************************************
+	 * 機能： お知らせ(news)テーブルを取得
+	 * @param1： $field 取得するDBの項目を指定
+	 * @return： int 件数
+	 *****************************************************/
+	public function getNews($field='*')
+	{
+		$query = $this->db->query('SELECT '.$field.' FROM news');
+		return $query->result();
 	}
 	/****************************************************
 	 * 機能： 1ページ分のお知らせ(news)データを取得
 	 * @param1： int $page 現在ページ数
 	 * @param2： int $perpage 1ページに表示する項目数
+	 * @param3： int $month 絞り込み条件
 	 * @return： obj 取得したnewsテーブルデータ
 	 *****************************************************/
-	public function find_by_page($page, $perpage) {
+	public function find_by_page($page, $perpage, $month=0) {
 		$start = (($page * $perpage)-$perpage);
-		$query = $this->db->query('SELECT * FROM news ORDER BY posted DESC LIMIT ?, ?',array($start,$perpage));
+		$where = ($month != 0) ? ' WHERE month = '.$month : '';
+		$query = $this->db->query('SELECT * FROM news ' .$where. ' ORDER BY posted DESC LIMIT ?, ?', array($start,$perpage));
 		return $query->result();
 	}
 	/****************************************************

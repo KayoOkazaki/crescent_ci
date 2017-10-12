@@ -2,7 +2,7 @@
 class News extends CI_Controller {
 
 	// 1ページあたりの表示件数
-	const NUM_PER_PAGE = 2;
+	const NUM_PER_PAGE = 5;
 
 	public function __construct() {
 		parent::__construct();
@@ -32,12 +32,19 @@ class News extends CI_Controller {
 	**************************/
 	public function index($page=1)
 	{
+		$month = 0;
+
+		//検索ボタン押下したとき
+		if ($this->input->get('filter',true)) {
+			$month = $this->input->get('month',true);
+		}
+
 		//peginationの設定
 		//お知らせ一覧画面のベースとなるindexページのURLを指定する
 		$config['base_url'] = base_url('admin/news/index');
 
 		//データ件数を取得
-		$config['total_rows'] = $this->News_model->getCount();
+		$config['total_rows'] = $this->News_model->getCount($month);
 
 		//1ページに表示するデータ数を定数よりセット
 		$config['per_page'] = self::NUM_PER_PAGE;
@@ -85,8 +92,11 @@ class News extends CI_Controller {
 		//上記設定内容をページネーションライブラリに上書き
 		$this->pagination->initialize($config);
 
+		//全てのニュースからmonthを取得
+		$data['allnews'] = $this->News_model->getNews('month');
+
 		//現在のページ数と1ページ毎の項目数をもとに、表示するべきデータを取得する
-		$data['items'] = $this->News_model->find_by_page($page, self::NUM_PER_PAGE);
+		$data['items'] = $this->News_model->find_by_page($page, self::NUM_PER_PAGE,$month);
 
 		//取得したデータを一覧画面に表示する
 		$this->load->view('admin/admin_header_v');

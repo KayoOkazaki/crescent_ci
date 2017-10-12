@@ -27,7 +27,11 @@
       });
   </script>
   <style>
+  #filter_form {
+  	float:left;
+  }
   #pages {
+  	float: right;
   	margin-right: auto;
   }
   ul li {
@@ -73,9 +77,31 @@
        <a class="button m" target="_blank" href="https://github.com/KayoOkazaki/crescent_ci/blob/master/application/models/News_model.php">Model</a>
     </nav>
     <p><a href="<?php echo base_url('admin/news/add_c');?>">お知らせの追加</a></p>
+    <form id="filter_form" action="<?php echo base_url('admin/news');?>" method="get">
+	    <div>
+	        <?php
+	            //最初のリスト
+	            $options['0'] = '全て';
+
+	            //DBの値をリストの追加
+	            foreach ($allnews as $news) {
+	            	$options[$news->month] = $news->month.'月';
+	            }
+	            //その他属性の設定
+	            $setting = array('style' => 'width:60px;');
+
+	            //連想配列のキーで昇順ソート
+	            ksort($options,SORT_NUMERIC);
+
+	            //ドロップダウン表示（デフォルト0）
+	            echo form_dropdown('month', $options, 0, $setting);
+	        ?>
+	        <input type="submit" name="filter" value="検索"/>
+	    </div>
+    </form>
     <div id="pages">
    		<?php echo $this->pagination->create_links(); ?>
-<!--    		<ul class="pageNav04"> -->
+<!--    	<ul class="pageNav04"> -->
 <!-- 			<li><a href="1.html">&laquo; 前</a></li> -->
 <!-- 			<li><a href="1.html">1</a></li> -->
 <!-- 			<li><span>2</span></li> -->
