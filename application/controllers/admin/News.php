@@ -34,8 +34,9 @@ class News extends CI_Controller {
 	{
 		$month = 0;
 
-		//検索ボタン押下したとき
+		//GET送信：検索ボタン押下したとき
 		if ($this->input->get('filter',true)) {
+			//選択された月を取得
 			$month = $this->input->get('month',true);
 		}
 
@@ -92,7 +93,7 @@ class News extends CI_Controller {
 		//上記設定内容をページネーションライブラリに上書き
 		$this->pagination->initialize($config);
 
-		//全てのニュースからmonthを取得
+		//ニュースデータからmonthを抽出
 		$data['allnews'] = $this->News_model->getNews('month');
 
 		//現在のページ数と1ページ毎の項目数をもとに、表示するべきデータを取得する

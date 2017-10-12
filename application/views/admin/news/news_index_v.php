@@ -78,6 +78,17 @@
     </nav>
     <p><a href="<?php echo base_url('admin/news/add_c');?>">お知らせの追加</a></p>
     <form id="filter_form" action="<?php echo base_url('admin/news');?>" method="get">
+        <!-- <select name="month" style="width:60px;">
+            <option value="0" selected="selected">全て</option>
+            <option value="1">1月</option>
+            <option value="2">2月</option>
+            <option value="3">3月</option>
+            <option value="4">4月</option>
+            <option value="5">5月</option>
+            <option value="6">6月</option>
+            <option value="9">9月</option>
+            <option value="10">10月</option>
+        </select>         -->
 	    <div>
 	        <?php
 	            //最初のリスト
