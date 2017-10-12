@@ -83,7 +83,7 @@
 	            //最初のリスト
 	            $options['0'] = '全て';
 
-	            //DBの値をリストの追加
+	            //DBの値をリストに追加
 	            foreach ($allnews as $news) {
 	            	$options[$news->month] = $news->month.'月';
 	            }
