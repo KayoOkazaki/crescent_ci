@@ -134,6 +134,12 @@ class News extends CI_Controller {
 				$this->output->set_output('レスポンス：'.$res['file_name']);
 				$news = new stdClass;
 				$news->posted = $this->input->post('posted');
+
+				//日付(Y-m-d H:i:s)から月(m)を抽出する
+				$date = new DateTime($this->input->post('posted'));
+				list($yy, $mm, $dd) = explode('-', $date->format('Y-m-d'));
+				$news->month = $mm;
+
 				$news->title= $this->input->post('title');
 				$news->message= $this->input->post('message');
 				$news->image = $res['file_name'];
@@ -198,6 +204,12 @@ class News extends CI_Controller {
 				$news = new stdClass;
 				$news->id = $id;
 				$news->posted = $this->input->post('posted');
+
+				//日付(Y-m-d H:i:s)から月(m)を抽出する
+				$date = new DateTime($this->input->post('posted'));
+				list($yy, $mm, $dd) = explode('-', $date->format('Y-m-d'));
+				$news->month = $mm;
+
 				$news->title = $this->input->post('title');
 				$news->message = $this->input->post('message');
 
