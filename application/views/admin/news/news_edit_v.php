@@ -104,7 +104,7 @@
 		          echo form_checkbox($data);
 		          echo form_label('画像の変更をしない','imageflg');
           ?>
-          <div><img src="<?php echo base_url('images/press/'.$item->image)?>" width="64" height="64" alt=""></div>
+          <div><img src="<?php echo base_url('images/press/'.$item->image);?>" width="64" height="64" alt=""></div>
           <!--エラーメッセージ -->
           <div class="error"><?php echo $error;?></div>
         </td>

@@ -106,7 +106,11 @@ class News extends CI_Controller {
 			//バリデーションチェックOKの時
 			if ($this->form_validation->run())
 			{
+<<<<<<< HEAD
 				// $this->output->set_output('レスポンス：'.$res['file_name']);
+=======
+// 				$this->output->set_output('レスポンス：'.$res['file_name']);
+>>>>>>> 8469eae08e36442d42f0516c57ba1c91ab5a550f
 				$this->output->set_output('レスポンス：'.$_FILES['userfile']['name']);
 				$news = new stdClass;
 				$news->posted = $this->input->post('posted');
@@ -116,8 +120,14 @@ class News extends CI_Controller {
 				$news->month = $mm;
 				$news->title= $this->input->post('title');
 				$news->message= $this->input->post('message');
+<<<<<<< HEAD
 				// 				$news->image = $res['file_name'];
 				$news->image = $_FILES['userfile']['name'];
+=======
+// 				$news->image = $res['file_name'];
+				$news->image = $_FILES['userfile']['name'];
+
+>>>>>>> 8469eae08e36442d42f0516c57ba1c91ab5a550f
 				//入力された値をDBに追加
 				$this->News_model->insert($news);
 				//お知らせ完了ページへ遷移
@@ -156,7 +166,11 @@ class News extends CI_Controller {
 			{
 				//ファイルをアップロード
 				$res = $this->News_model->do_upload();
+<<<<<<< HEAD
 				// $file_name = $res['file_name'];
+=======
+// 				$file_name = $res['file_name'];
+>>>>>>> 8469eae08e36442d42f0516c57ba1c91ab5a550f
 				$file_name = $_FILES['userfile']['name'];
 				$error= $res['error'];
 			}
@@ -179,7 +193,11 @@ class News extends CI_Controller {
 				//画像の変更をする時
 				if ( ! $this->input->post('imageflg')) {
 					//アップロードファイル名をセット
+<<<<<<< HEAD
 					// 					$news->image = $res['file_name'];
+=======
+// 					$news->image = $res['file_name'];
+>>>>>>> 8469eae08e36442d42f0516c57ba1c91ab5a550f
 					$news->image = $_FILES['userfile']['name'];
 				}
 				//入力された値をDBに追加
