@@ -19,7 +19,7 @@ class Product_model extends CI_Model {
 	 *****************************************************/
 	public function getCount()
 	{
-		$query = $this->db->query('SELECT * FROM product');
+		$query = $this->db->query('SELECT * FROM cics_product');
 		return $query->num_rows();
 	}
 	/****************************************************
@@ -30,7 +30,7 @@ class Product_model extends CI_Model {
 	 *****************************************************/
 	public function find_by_page($page, $perpage) {
 		$start = (($page * $perpage)-$perpage);
-		$query = $this->db->query('SELECT * FROM product LIMIT ?, ?',array($start,$perpage));
+		$query = $this->db->query('SELECT * FROM cics_product LIMIT ?, ?',array($start,$perpage));
 		return $query->result();
 	}
 	/****************************************************
@@ -40,7 +40,7 @@ class Product_model extends CI_Model {
 	 *****************************************************/
 	public function insert($data) {
 
-		$this->db->insert('product', $data);
+		$this->db->insert('cics_product', $data);
 	}
 	/****************************************************
 	 * 機能： 商品(product)テーブルを取得
@@ -49,7 +49,7 @@ class Product_model extends CI_Model {
 	 *****************************************************/
 	public function find_by_id($id) {
 
-		return $this->db->get_where('product', array('id' => $id))->row();
+		return $this->db->get_where('cics_product', array('id' => $id))->row();
 
 	}
 	/****************************************************
@@ -60,7 +60,7 @@ class Product_model extends CI_Model {
 	public function update($data) {
 
 		$this->db->where('id',$data->id);
-		$this->db->update('product',$data);
+		$this->db->update('cics_product',$data);
 
 	}
 	/****************************************************
@@ -70,7 +70,7 @@ class Product_model extends CI_Model {
 	 *****************************************************/
 	public function delete($id) {
 
-		$this->db->delete('product', array('id'=> $id));
+		$this->db->delete('cics_product', array('id'=> $id));
 
 	}
 	/****************************************************

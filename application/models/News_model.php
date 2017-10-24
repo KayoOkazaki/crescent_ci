@@ -23,12 +23,12 @@ class News_model extends CI_Model {
 	{
 	// ★直接SQL文記述する方法
 // 		$where = ($month != 0) ? ' WHERE month = '.$month : '';
-// 		$query = $this->db->query('SELECT * FROM news '.$where);
+// 		$query = $this->db->query('SELECT * FROM cics_news '.$where);
 // 		return $query->num_rows();
 
 	// ★ActiveRecordでクエリ作成する方法
 		$this->db->select('*');
-		$this->db->from('news');
+		$this->db->from('cics_news');
 		if ($month != 0) {
 			$this->db->where('month', $month);
 		}
@@ -43,12 +43,12 @@ class News_model extends CI_Model {
 	public function getNews($field='*')
 	{
 	// ★直接SQL文記述する方法
-// 		$query = $this->db->query('SELECT '.$field.' FROM news');
+	// 	$query = $this->db->query('SELECT '.$field.' FROM cics_news');
 // 		return $query->result();
 
 	// ★ActiveRecordでクエリ作成する方法
 		$this->db->select($field);
-		$this->db->from('news');
+		$this->db->from('cics_news');
 		return $this->db->get()->result();
 
 	}
@@ -66,13 +66,13 @@ class News_model extends CI_Model {
 
 	// ★直接SQL文記述する方法
 // 		$where = ($month != 0) ? ' WHERE month = '.$month : '';
-// 		$query = $this->db->query('SELECT * FROM news ' .$where. ' ORDER BY posted DESC LIMIT ?, ?', array($start,$perpage));
+// 		$query = $this->db->query('SELECT * FROM cics_news ' .$where. ' ORDER BY posted DESC LIMIT ?, ?', array($start,$perpage));
 // 		return $query->result();
 
 
 	// ★ActiveRecordでクエリ作成する方法
  		$this->db->select('*');
-		$this->db->from('news');
+		$this->db->from('cics_news');
 		if ($month!=0) {
 			$this->db->where('month',$month);
 		}
@@ -91,7 +91,7 @@ class News_model extends CI_Model {
 	 *****************************************************/
 	public function insert($data) {
 
-		$this->db->insert('news', $data);
+		$this->db->insert('cics_news', $data);
 	}
 	/****************************************************
 	 * 機能： お知らせ(news)テーブルを取得
@@ -103,7 +103,7 @@ class News_model extends CI_Model {
 		$where = array(
 				'id' => $id
 		);
-		return $this->db->get_where('news', $where)->row();
+		return $this->db->get_where('cics_news', $where)->row();
 
 	}
 	/****************************************************
@@ -114,7 +114,7 @@ class News_model extends CI_Model {
 	 public function update($data) {
 
 		$this->db->where('id',$data->id);
-		$this->db->update('news',$data);
+		$this->db->update('cics_news',$data);
 
 	}
 	/****************************************************
@@ -127,7 +127,7 @@ class News_model extends CI_Model {
 		$where = array(
 				'id' => $id
 		);
-		$this->db->delete('news', $where);
+		$this->db->delete('cics_news', $where);
 
 	}
 	/****************************************************

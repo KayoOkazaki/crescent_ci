@@ -12,7 +12,7 @@ class Admin_model extends CI_Model {
 	public function login($id, $pass)
 	{
 		$hashed = hash('sha256', $pass . $id);
-		$query = $this->db->query('SELECT * FROM admins WHERE login_id=? AND login_pass = ?',
+		$query = $this->db->query('SELECT * FROM cics_admins WHERE login_id=? AND login_pass = ?',
 		array($id,$hashed));
 
 		//ログイン成功
