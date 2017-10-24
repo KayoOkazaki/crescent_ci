@@ -42,6 +42,7 @@
             <li><a href="<?php echo base_url('home/news_c'); ?>">ニュース<span>NEWS</span></a></li>
             <li><a href="<?php echo base_url('home/shop_c'); ?>">ショップ<span>ONLINE SHOP</span></a></li>
             <li><a href="<?php echo base_url('home/contact_c'); ?>">お問い合わせ<span>CONTACT</span></a></li>
+            <li><a href="<?php echo base_url('admin/auth/login_c'); ?>">管理メニュー<span>ADMIN MENU</span></a></li>
           </ul>
                     <form class="navbar-form" role="search">
             <div class="input-group">
