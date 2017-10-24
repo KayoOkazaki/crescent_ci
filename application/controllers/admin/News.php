@@ -131,7 +131,8 @@ class News extends CI_Controller {
 			//バリデーションチェックOKの時
 			if ($this->form_validation->run())
 			{
-				$this->output->set_output('レスポンス：'.$res['file_name']);
+// 				$this->output->set_output('レスポンス：'.$res['file_name']);
+				$this->output->set_output('レスポンス：'.$_FILES['userfile']['name']);
 				$news = new stdClass;
 				$news->posted = $this->input->post('posted');
 
@@ -142,7 +143,8 @@ class News extends CI_Controller {
 
 				$news->title= $this->input->post('title');
 				$news->message= $this->input->post('message');
-				$news->image = $res['file_name'];
+// 				$news->image = $res['file_name'];
+				$news->image = $_FILES['userfile']['name'];
 
 				//入力された値をDBに追加
 				$this->News_model->insert($news);
@@ -188,8 +190,8 @@ class News extends CI_Controller {
 			{
 				//ファイルをアップロード
 				$res = $this->News_model->do_upload();
-				$this->output->set_output('レスポンス：'.$res['file_name']);
-				$file_name = $res['file_name'];
+// 				$file_name = $res['file_name'];
+				$file_name = $_FILES['userfile']['name'];
 				$error= $res['error'];
 			}
 
@@ -217,7 +219,8 @@ class News extends CI_Controller {
 				if ( ! $this->input->post('imageflg')) {
 
 					//アップロードファイル名をセット
-					$news->image = $res['file_name'];
+// 					$news->image = $res['file_name'];
+					$news->image = $_FILES['userfile']['name'];
 				}
 
 				//入力された値をDBに追加

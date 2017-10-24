@@ -73,7 +73,7 @@
            画像
        -------------------------->
         <th class="fixed">画像</th>
-        <td><img src="<?php echo "../images/press/". $item->image; ?>" width="64" height="64" alt=""></td>
+        <td><img src="<?php echo base_url('images/press/'.$item->image); ?>" width="64" height="64" alt=""></td>
       </tr>
     </table>
     <p>
