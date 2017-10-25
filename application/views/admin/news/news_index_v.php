@@ -67,6 +67,9 @@
 		background: #ccf;
 		border-color: #000;
 	}
+	#filter_form span {
+		font-size:18px;
+	}
   </style>
 <div id="container">
   <main id="admin_index">
@@ -89,26 +92,25 @@
             <option value="9">9月</option>
             <option value="10">10月</option>
         </select>         -->
-	    <div>
-	        <?php
-	            //最初のリスト
-	            $options['0'] = '全て';
+	    <span>【月別に検索】</span>
+        <?php
+            //最初のリスト
+            $options['0'] = '全て';
 
-	            //DBの値をリストに追加
-	            foreach ($allnews as $news) {
-	            	$options[$news->month] = $news->month.'月';
-	            }
-	            //その他属性の設定
-	            $setting = array('style' => 'width:60px;');
+            //DBの値をリストに追加
+            foreach ($allnews as $news) {
+            	$options[$news->month] = $news->month.'月';
+            }
+            //その他属性の設定
+            $setting = array('style' => 'width:60px;');
 
-	            //連想配列のキーで昇順ソート
-	            ksort($options,SORT_NUMERIC);
+            //連想配列のキーで昇順ソート
+            ksort($options,SORT_NUMERIC);
 
-	            //ドロップダウン表示（デフォルト0）
-	            echo form_dropdown('month', $options, 0, $setting);
-	        ?>
-	        <input type="submit" name="filter" value="検索"/>
-	    </div>
+            //ドロップダウン表示（デフォルト0）
+            echo form_dropdown('month', $options, 0, $setting);
+        ?>
+        <input type="submit" name="filter" value="検索"/>
     </form>
     <div id="pages">
    		<?php echo $this->pagination->create_links(); ?>
